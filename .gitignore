@@ -1,0 +1,28 @@
+# Environnement virtuel
+.venv/
+
+# Bytecode Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Sorties générées par le moteur (rapports JSON, audits)
+output/
+
+# Gros jeu de données pour le benchmark (non versionné)
+data/big/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Outils qualité / tests
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Divers OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
