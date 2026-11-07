@@ -1,0 +1,1377 @@
+{
+  "generator": {
+    "seed": 42,
+    "files": 3,
+    "lines_per_file": 10000,
+    "attack_ratio": 0.02,
+    "noise_ratio": 0.03
+  },
+  "detection_parameters": {
+    "threshold": 5,
+    "window_seconds": 60
+  },
+  "files": [
+    {
+      "name": "server_01.log",
+      "date": "2026-11-05",
+      "lines": 10000
+    },
+    {
+      "name": "server_02.log",
+      "date": "2026-11-06",
+      "lines": 10000
+    },
+    {
+      "name": "server_03.log",
+      "date": "2026-11-07",
+      "lines": 10000
+    }
+  ],
+  "totals": {
+    "lines": 30000,
+    "empty": 186,
+    "rejected": 428,
+    "valid": 29386
+  },
+  "noise": {
+    "bad_ip": 72,
+    "empty": 116,
+    "extra_spaces": 112,
+    "invalid_json": 124,
+    "level_case": 111,
+    "null_timestamp": 48,
+    "truncated": 112,
+    "unknown_level": 72,
+    "user_case": 48,
+    "whitespace": 70
+  },
+  "valid_level_counts": {
+    "CRITICAL": 223,
+    "ERROR": 2323,
+    "INFO": 23338,
+    "WARNING": 3502
+  },
+  "attack_sequences": {
+    "total": 73,
+    "full": 54,
+    "interrupted": 19
+  },
+  "expected_alerts": [
+    {
+      "ip": "103.118.4.114",
+      "failures": 12,
+      "start": "2026-11-07T16:11:54",
+      "end": "2026-11-07T16:12:19",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "103.175.218.213",
+      "failures": 5,
+      "start": "2026-11-07T13:43:53",
+      "end": "2026-11-07T13:44:05",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "103.25.84.96",
+      "failures": 5,
+      "start": "2026-11-07T13:41:34",
+      "end": "2026-11-07T13:41:41",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "103.40.151.68",
+      "failures": 6,
+      "start": "2026-11-05T14:40:50",
+      "end": "2026-11-05T14:41:00",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "103.59.250.242",
+      "failures": 11,
+      "start": "2026-11-06T18:37:05",
+      "end": "2026-11-06T18:37:28",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "103.87.54.29",
+      "failures": 5,
+      "start": "2026-11-06T17:22:05",
+      "end": "2026-11-06T17:22:15",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "185.101.146.213",
+      "failures": 5,
+      "start": "2026-11-07T14:48:10",
+      "end": "2026-11-07T14:48:19",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "185.121.40.132",
+      "failures": 10,
+      "start": "2026-11-07T10:16:07",
+      "end": "2026-11-07T10:16:34",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "185.15.3.112",
+      "failures": 10,
+      "start": "2026-11-05T10:34:49",
+      "end": "2026-11-05T10:35:13",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "185.153.159.218",
+      "failures": 6,
+      "start": "2026-11-05T18:35:08",
+      "end": "2026-11-05T18:35:19",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "185.162.233.58",
+      "failures": 11,
+      "start": "2026-11-05T21:43:11",
+      "end": "2026-11-05T21:43:39",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "185.187.193.99",
+      "failures": 9,
+      "start": "2026-11-06T01:38:22",
+      "end": "2026-11-06T01:38:46",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "185.2.101.138",
+      "failures": 12,
+      "start": "2026-11-06T14:28:09",
+      "end": "2026-11-06T14:28:40",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "185.223.141.130",
+      "failures": 5,
+      "start": "2026-11-07T11:04:54",
+      "end": "2026-11-07T11:05:03",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "185.60.64.161",
+      "failures": 11,
+      "start": "2026-11-06T21:02:57",
+      "end": "2026-11-06T21:03:23",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "185.93.10.136",
+      "failures": 9,
+      "start": "2026-11-05T09:24:41",
+      "end": "2026-11-05T09:25:02",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "194.36.104.125",
+      "failures": 6,
+      "start": "2026-11-07T09:58:02",
+      "end": "2026-11-07T09:58:17",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "194.52.185.212",
+      "failures": 8,
+      "start": "2026-11-06T15:45:17",
+      "end": "2026-11-06T15:45:33",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "222.108.251.164",
+      "failures": 5,
+      "start": "2026-11-07T10:57:23",
+      "end": "2026-11-07T10:57:34",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "222.149.124.53",
+      "failures": 6,
+      "start": "2026-11-07T18:39:07",
+      "end": "2026-11-07T18:39:19",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "222.170.80.113",
+      "failures": 6,
+      "start": "2026-11-06T13:46:46",
+      "end": "2026-11-06T13:46:59",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "222.172.158.113",
+      "failures": 10,
+      "start": "2026-11-06T18:07:24",
+      "end": "2026-11-06T18:07:48",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "222.211.196.238",
+      "failures": 12,
+      "start": "2026-11-05T17:44:06",
+      "end": "2026-11-05T17:44:33",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "222.225.23.49",
+      "failures": 11,
+      "start": "2026-11-07T21:38:33",
+      "end": "2026-11-07T21:38:54",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "222.240.158.193",
+      "failures": 8,
+      "start": "2026-11-07T15:22:08",
+      "end": "2026-11-07T15:22:24",
+      "blacklisted": true,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "222.75.52.97",
+      "failures": 11,
+      "start": "2026-11-07T13:02:43",
+      "end": "2026-11-07T13:03:07",
+      "blacklisted": true,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "222.79.45.173",
+      "failures": 6,
+      "start": "2026-11-07T10:13:01",
+      "end": "2026-11-07T10:13:12",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "45.142.59.13",
+      "failures": 11,
+      "start": "2026-11-05T14:35:30",
+      "end": "2026-11-05T14:35:53",
+      "blacklisted": true,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "45.184.96.167",
+      "failures": 5,
+      "start": "2026-11-07T20:11:58",
+      "end": "2026-11-07T20:12:05",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "45.189.58.169",
+      "failures": 8,
+      "start": "2026-11-07T08:44:27",
+      "end": "2026-11-07T08:44:47",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "45.195.167.41",
+      "failures": 11,
+      "start": "2026-11-07T10:44:57",
+      "end": "2026-11-07T10:45:23",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "45.203.93.175",
+      "failures": 8,
+      "start": "2026-11-06T07:47:19",
+      "end": "2026-11-06T07:47:36",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "45.246.145.47",
+      "failures": 6,
+      "start": "2026-11-05T11:34:27",
+      "end": "2026-11-05T11:34:41",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "45.84.136.234",
+      "failures": 12,
+      "start": "2026-11-06T19:45:54",
+      "end": "2026-11-06T19:46:21",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "45.93.100.55",
+      "failures": 7,
+      "start": "2026-11-05T13:22:12",
+      "end": "2026-11-05T13:22:28",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "45.97.239.254",
+      "failures": 12,
+      "start": "2026-11-05T07:51:19",
+      "end": "2026-11-05T07:51:44",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "45.98.180.59",
+      "failures": 8,
+      "start": "2026-11-05T12:51:00",
+      "end": "2026-11-05T12:51:18",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "5.108.173.62",
+      "failures": 12,
+      "start": "2026-11-05T16:34:30",
+      "end": "2026-11-05T16:35:00",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "5.127.228.225",
+      "failures": 9,
+      "start": "2026-11-05T08:47:07",
+      "end": "2026-11-05T08:47:24",
+      "blacklisted": true,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "5.138.94.191",
+      "failures": 6,
+      "start": "2026-11-06T10:57:54",
+      "end": "2026-11-06T10:58:05",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "5.147.166.158",
+      "failures": 8,
+      "start": "2026-11-05T06:50:56",
+      "end": "2026-11-05T06:51:13",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "5.215.190.43",
+      "failures": 7,
+      "start": "2026-11-06T16:53:11",
+      "end": "2026-11-06T16:53:27",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "5.221.183.58",
+      "failures": 11,
+      "start": "2026-11-05T19:25:38",
+      "end": "2026-11-05T19:26:02",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "5.229.245.89",
+      "failures": 8,
+      "start": "2026-11-07T14:29:00",
+      "end": "2026-11-07T14:29:17",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "5.246.217.57",
+      "failures": 10,
+      "start": "2026-11-07T12:45:35",
+      "end": "2026-11-07T12:45:59",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "5.81.167.59",
+      "failures": 10,
+      "start": "2026-11-07T19:12:30",
+      "end": "2026-11-07T19:12:55",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "91.133.218.222",
+      "failures": 8,
+      "start": "2026-11-06T11:59:58",
+      "end": "2026-11-06T12:00:14",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "91.179.226.194",
+      "failures": 10,
+      "start": "2026-11-05T15:28:24",
+      "end": "2026-11-05T15:28:49",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "91.189.93.62",
+      "failures": 10,
+      "start": "2026-11-05T11:24:14",
+      "end": "2026-11-05T11:24:42",
+      "blacklisted": true,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "91.197.205.57",
+      "failures": 11,
+      "start": "2026-11-05T13:34:27",
+      "end": "2026-11-05T13:34:50",
+      "blacklisted": true,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "91.216.50.146",
+      "failures": 7,
+      "start": "2026-11-07T07:10:42",
+      "end": "2026-11-07T07:10:59",
+      "blacklisted": false,
+      "file": "server_03.log"
+    }
+  ],
+  "interrupted_only_ips": [
+    "103.38.74.20",
+    "103.9.247.172",
+    "185.178.151.1",
+    "194.21.10.187",
+    "222.179.12.81",
+    "222.237.197.92",
+    "222.251.242.81",
+    "222.83.222.215",
+    "45.151.231.76",
+    "45.155.114.140",
+    "45.44.241.175",
+    "45.9.33.121",
+    "5.233.33.249",
+    "5.9.31.186"
+  ],
+  "attacks": [
+    {
+      "ip": "5.147.166.158",
+      "kind": "full",
+      "failures": 8,
+      "failures_after_success": 0,
+      "target_user": "root",
+      "start": "2026-11-05T06:50:56",
+      "end": "2026-11-05T06:51:13",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "45.97.239.254",
+      "kind": "full",
+      "failures": 12,
+      "failures_after_success": 0,
+      "target_user": "test",
+      "start": "2026-11-05T07:51:19",
+      "end": "2026-11-05T07:51:44",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "5.127.228.225",
+      "kind": "full",
+      "failures": 9,
+      "failures_after_success": 0,
+      "target_user": "admin",
+      "start": "2026-11-05T08:47:07",
+      "end": "2026-11-05T08:47:24",
+      "blacklisted": true,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "185.93.10.136",
+      "kind": "full",
+      "failures": 9,
+      "failures_after_success": 0,
+      "target_user": "test",
+      "start": "2026-11-05T09:24:41",
+      "end": "2026-11-05T09:25:02",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "185.15.3.112",
+      "kind": "full",
+      "failures": 10,
+      "failures_after_success": 0,
+      "target_user": "postgres",
+      "start": "2026-11-05T10:34:49",
+      "end": "2026-11-05T10:35:13",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "222.240.158.193",
+      "kind": "interrupted",
+      "failures": 2,
+      "failures_after_success": 1,
+      "target_user": "admin",
+      "start": "2026-11-05T10:46:58",
+      "end": "2026-11-05T10:46:59",
+      "blacklisted": true,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "91.189.93.62",
+      "kind": "full",
+      "failures": 10,
+      "failures_after_success": 0,
+      "target_user": "postgres",
+      "start": "2026-11-05T11:24:14",
+      "end": "2026-11-05T11:24:42",
+      "blacklisted": true,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "45.246.145.47",
+      "kind": "full",
+      "failures": 6,
+      "failures_after_success": 0,
+      "target_user": "test",
+      "start": "2026-11-05T11:34:27",
+      "end": "2026-11-05T11:34:41",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "45.44.241.175",
+      "kind": "interrupted",
+      "failures": 3,
+      "failures_after_success": 3,
+      "target_user": "postgres",
+      "start": "2026-11-05T11:40:13",
+      "end": "2026-11-05T11:40:19",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "45.98.180.59",
+      "kind": "full",
+      "failures": 8,
+      "failures_after_success": 0,
+      "target_user": "oracle",
+      "start": "2026-11-05T12:51:00",
+      "end": "2026-11-05T12:51:18",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "45.93.100.55",
+      "kind": "full",
+      "failures": 7,
+      "failures_after_success": 0,
+      "target_user": "test",
+      "start": "2026-11-05T13:22:12",
+      "end": "2026-11-05T13:22:28",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "91.197.205.57",
+      "kind": "full",
+      "failures": 11,
+      "failures_after_success": 0,
+      "target_user": "root",
+      "start": "2026-11-05T13:34:27",
+      "end": "2026-11-05T13:34:50",
+      "blacklisted": true,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "45.142.59.13",
+      "kind": "full",
+      "failures": 11,
+      "failures_after_success": 0,
+      "target_user": "admin",
+      "start": "2026-11-05T14:35:30",
+      "end": "2026-11-05T14:35:53",
+      "blacklisted": true,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "103.40.151.68",
+      "kind": "full",
+      "failures": 6,
+      "failures_after_success": 0,
+      "target_user": "admin",
+      "start": "2026-11-05T14:40:50",
+      "end": "2026-11-05T14:41:00",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "45.155.114.140",
+      "kind": "interrupted",
+      "failures": 3,
+      "failures_after_success": 4,
+      "target_user": "root",
+      "start": "2026-11-05T15:23:00",
+      "end": "2026-11-05T15:23:05",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "91.179.226.194",
+      "kind": "full",
+      "failures": 10,
+      "failures_after_success": 0,
+      "target_user": "root",
+      "start": "2026-11-05T15:28:24",
+      "end": "2026-11-05T15:28:49",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "5.108.173.62",
+      "kind": "full",
+      "failures": 12,
+      "failures_after_success": 0,
+      "target_user": "oracle",
+      "start": "2026-11-05T16:34:30",
+      "end": "2026-11-05T16:35:00",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "103.9.247.172",
+      "kind": "interrupted",
+      "failures": 2,
+      "failures_after_success": 1,
+      "target_user": "oracle",
+      "start": "2026-11-05T16:40:59",
+      "end": "2026-11-05T16:41:02",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "185.178.151.1",
+      "kind": "interrupted",
+      "failures": 2,
+      "failures_after_success": 4,
+      "target_user": "admin",
+      "start": "2026-11-05T17:30:57",
+      "end": "2026-11-05T17:30:59",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "222.211.196.238",
+      "kind": "full",
+      "failures": 12,
+      "failures_after_success": 0,
+      "target_user": "oracle",
+      "start": "2026-11-05T17:44:06",
+      "end": "2026-11-05T17:44:33",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "185.153.159.218",
+      "kind": "full",
+      "failures": 6,
+      "failures_after_success": 0,
+      "target_user": "admin",
+      "start": "2026-11-05T18:35:08",
+      "end": "2026-11-05T18:35:19",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "5.221.183.58",
+      "kind": "full",
+      "failures": 11,
+      "failures_after_success": 0,
+      "target_user": "postgres",
+      "start": "2026-11-05T19:25:38",
+      "end": "2026-11-05T19:26:02",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "5.233.33.249",
+      "kind": "interrupted",
+      "failures": 3,
+      "failures_after_success": 4,
+      "target_user": "test",
+      "start": "2026-11-05T20:12:51",
+      "end": "2026-11-05T20:12:55",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "185.162.233.58",
+      "kind": "full",
+      "failures": 11,
+      "failures_after_success": 0,
+      "target_user": "postgres",
+      "start": "2026-11-05T21:43:11",
+      "end": "2026-11-05T21:43:39",
+      "blacklisted": false,
+      "file": "server_01.log"
+    },
+    {
+      "ip": "222.237.197.92",
+      "kind": "interrupted",
+      "failures": 2,
+      "failures_after_success": 1,
+      "target_user": "admin",
+      "start": "2026-11-06T00:48:26",
+      "end": "2026-11-06T00:48:27",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "185.187.193.99",
+      "kind": "full",
+      "failures": 9,
+      "failures_after_success": 0,
+      "target_user": "oracle",
+      "start": "2026-11-06T01:38:22",
+      "end": "2026-11-06T01:38:46",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "45.203.93.175",
+      "kind": "full",
+      "failures": 8,
+      "failures_after_success": 0,
+      "target_user": "oracle",
+      "start": "2026-11-06T07:47:19",
+      "end": "2026-11-06T07:47:36",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "222.179.12.81",
+      "kind": "interrupted",
+      "failures": 3,
+      "failures_after_success": 1,
+      "target_user": "postgres",
+      "start": "2026-11-06T08:38:34",
+      "end": "2026-11-06T08:38:40",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "103.38.74.20",
+      "kind": "interrupted",
+      "failures": 4,
+      "failures_after_success": 1,
+      "target_user": "root",
+      "start": "2026-11-06T09:56:51",
+      "end": "2026-11-06T09:56:59",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "45.151.231.76",
+      "kind": "interrupted",
+      "failures": 3,
+      "failures_after_success": 3,
+      "target_user": "root",
+      "start": "2026-11-06T10:01:06",
+      "end": "2026-11-06T10:01:11",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "5.138.94.191",
+      "kind": "full",
+      "failures": 6,
+      "failures_after_success": 0,
+      "target_user": "postgres",
+      "start": "2026-11-06T10:57:54",
+      "end": "2026-11-06T10:58:05",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "222.75.52.97",
+      "kind": "interrupted",
+      "failures": 2,
+      "failures_after_success": 4,
+      "target_user": "postgres",
+      "start": "2026-11-06T11:53:56",
+      "end": "2026-11-06T11:53:58",
+      "blacklisted": true,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "194.21.10.187",
+      "kind": "interrupted",
+      "failures": 3,
+      "failures_after_success": 3,
+      "target_user": "test",
+      "start": "2026-11-06T11:58:26",
+      "end": "2026-11-06T11:58:31",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "91.133.218.222",
+      "kind": "full",
+      "failures": 8,
+      "failures_after_success": 0,
+      "target_user": "test",
+      "start": "2026-11-06T11:59:58",
+      "end": "2026-11-06T12:00:14",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "5.127.228.225",
+      "kind": "full",
+      "failures": 7,
+      "failures_after_success": 0,
+      "target_user": "root",
+      "start": "2026-11-06T12:42:01",
+      "end": "2026-11-06T12:42:17",
+      "blacklisted": true,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "222.170.80.113",
+      "kind": "full",
+      "failures": 6,
+      "failures_after_success": 0,
+      "target_user": "admin",
+      "start": "2026-11-06T13:46:46",
+      "end": "2026-11-06T13:46:59",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "185.2.101.138",
+      "kind": "full",
+      "failures": 12,
+      "failures_after_success": 0,
+      "target_user": "root",
+      "start": "2026-11-06T14:28:09",
+      "end": "2026-11-06T14:28:40",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "5.9.31.186",
+      "kind": "interrupted",
+      "failures": 2,
+      "failures_after_success": 4,
+      "target_user": "root",
+      "start": "2026-11-06T15:01:54",
+      "end": "2026-11-06T15:01:56",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "222.240.158.193",
+      "kind": "interrupted",
+      "failures": 4,
+      "failures_after_success": 4,
+      "target_user": "oracle",
+      "start": "2026-11-06T15:31:20",
+      "end": "2026-11-06T15:31:28",
+      "blacklisted": true,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "194.52.185.212",
+      "kind": "full",
+      "failures": 8,
+      "failures_after_success": 0,
+      "target_user": "test",
+      "start": "2026-11-06T15:45:17",
+      "end": "2026-11-06T15:45:33",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "5.215.190.43",
+      "kind": "full",
+      "failures": 7,
+      "failures_after_success": 0,
+      "target_user": "admin",
+      "start": "2026-11-06T16:53:11",
+      "end": "2026-11-06T16:53:27",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "103.87.54.29",
+      "kind": "full",
+      "failures": 5,
+      "failures_after_success": 0,
+      "target_user": "admin",
+      "start": "2026-11-06T17:22:05",
+      "end": "2026-11-06T17:22:15",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "222.172.158.113",
+      "kind": "full",
+      "failures": 10,
+      "failures_after_success": 0,
+      "target_user": "oracle",
+      "start": "2026-11-06T18:07:24",
+      "end": "2026-11-06T18:07:48",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "103.59.250.242",
+      "kind": "full",
+      "failures": 11,
+      "failures_after_success": 0,
+      "target_user": "admin",
+      "start": "2026-11-06T18:37:05",
+      "end": "2026-11-06T18:37:28",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "45.84.136.234",
+      "kind": "full",
+      "failures": 12,
+      "failures_after_success": 0,
+      "target_user": "root",
+      "start": "2026-11-06T19:45:54",
+      "end": "2026-11-06T19:46:21",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "185.60.64.161",
+      "kind": "full",
+      "failures": 11,
+      "failures_after_success": 0,
+      "target_user": "oracle",
+      "start": "2026-11-06T21:02:57",
+      "end": "2026-11-06T21:03:23",
+      "blacklisted": false,
+      "file": "server_02.log"
+    },
+    {
+      "ip": "91.216.50.146",
+      "kind": "full",
+      "failures": 7,
+      "failures_after_success": 0,
+      "target_user": "postgres",
+      "start": "2026-11-07T07:10:42",
+      "end": "2026-11-07T07:10:59",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "222.251.242.81",
+      "kind": "interrupted",
+      "failures": 3,
+      "failures_after_success": 2,
+      "target_user": "root",
+      "start": "2026-11-07T08:32:04",
+      "end": "2026-11-07T08:32:09",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "45.189.58.169",
+      "kind": "full",
+      "failures": 8,
+      "failures_after_success": 0,
+      "target_user": "admin",
+      "start": "2026-11-07T08:44:27",
+      "end": "2026-11-07T08:44:47",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "91.189.93.62",
+      "kind": "interrupted",
+      "failures": 3,
+      "failures_after_success": 3,
+      "target_user": "admin",
+      "start": "2026-11-07T09:18:46",
+      "end": "2026-11-07T09:18:50",
+      "blacklisted": true,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "194.36.104.125",
+      "kind": "full",
+      "failures": 6,
+      "failures_after_success": 0,
+      "target_user": "admin",
+      "start": "2026-11-07T09:58:02",
+      "end": "2026-11-07T09:58:17",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "222.79.45.173",
+      "kind": "full",
+      "failures": 6,
+      "failures_after_success": 0,
+      "target_user": "test",
+      "start": "2026-11-07T10:13:01",
+      "end": "2026-11-07T10:13:12",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "185.121.40.132",
+      "kind": "full",
+      "failures": 10,
+      "failures_after_success": 0,
+      "target_user": "test",
+      "start": "2026-11-07T10:16:07",
+      "end": "2026-11-07T10:16:34",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "91.197.205.57",
+      "kind": "interrupted",
+      "failures": 2,
+      "failures_after_success": 3,
+      "target_user": "root",
+      "start": "2026-11-07T10:18:41",
+      "end": "2026-11-07T10:18:44",
+      "blacklisted": true,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "45.195.167.41",
+      "kind": "full",
+      "failures": 11,
+      "failures_after_success": 0,
+      "target_user": "test",
+      "start": "2026-11-07T10:44:57",
+      "end": "2026-11-07T10:45:23",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "222.108.251.164",
+      "kind": "full",
+      "failures": 5,
+      "failures_after_success": 0,
+      "target_user": "admin",
+      "start": "2026-11-07T10:57:23",
+      "end": "2026-11-07T10:57:34",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "185.223.141.130",
+      "kind": "full",
+      "failures": 5,
+      "failures_after_success": 0,
+      "target_user": "test",
+      "start": "2026-11-07T11:04:54",
+      "end": "2026-11-07T11:05:03",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "45.142.59.13",
+      "kind": "full",
+      "failures": 7,
+      "failures_after_success": 0,
+      "target_user": "root",
+      "start": "2026-11-07T11:52:36",
+      "end": "2026-11-07T11:52:56",
+      "blacklisted": true,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "5.246.217.57",
+      "kind": "full",
+      "failures": 10,
+      "failures_after_success": 0,
+      "target_user": "admin",
+      "start": "2026-11-07T12:45:35",
+      "end": "2026-11-07T12:45:59",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "222.75.52.97",
+      "kind": "full",
+      "failures": 11,
+      "failures_after_success": 0,
+      "target_user": "root",
+      "start": "2026-11-07T13:02:43",
+      "end": "2026-11-07T13:03:07",
+      "blacklisted": true,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "5.127.228.225",
+      "kind": "full",
+      "failures": 8,
+      "failures_after_success": 0,
+      "target_user": "postgres",
+      "start": "2026-11-07T13:02:53",
+      "end": "2026-11-07T13:03:14",
+      "blacklisted": true,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "103.25.84.96",
+      "kind": "full",
+      "failures": 5,
+      "failures_after_success": 0,
+      "target_user": "root",
+      "start": "2026-11-07T13:41:34",
+      "end": "2026-11-07T13:41:41",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "103.175.218.213",
+      "kind": "full",
+      "failures": 5,
+      "failures_after_success": 0,
+      "target_user": "admin",
+      "start": "2026-11-07T13:43:53",
+      "end": "2026-11-07T13:44:05",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "5.229.245.89",
+      "kind": "full",
+      "failures": 8,
+      "failures_after_success": 0,
+      "target_user": "root",
+      "start": "2026-11-07T14:29:00",
+      "end": "2026-11-07T14:29:17",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "185.101.146.213",
+      "kind": "full",
+      "failures": 5,
+      "failures_after_success": 0,
+      "target_user": "test",
+      "start": "2026-11-07T14:48:10",
+      "end": "2026-11-07T14:48:19",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "222.240.158.193",
+      "kind": "full",
+      "failures": 8,
+      "failures_after_success": 0,
+      "target_user": "oracle",
+      "start": "2026-11-07T15:22:08",
+      "end": "2026-11-07T15:22:24",
+      "blacklisted": true,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "103.118.4.114",
+      "kind": "full",
+      "failures": 12,
+      "failures_after_success": 0,
+      "target_user": "oracle",
+      "start": "2026-11-07T16:11:54",
+      "end": "2026-11-07T16:12:19",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "222.83.222.215",
+      "kind": "interrupted",
+      "failures": 3,
+      "failures_after_success": 4,
+      "target_user": "root",
+      "start": "2026-11-07T18:37:59",
+      "end": "2026-11-07T18:38:06",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "222.149.124.53",
+      "kind": "full",
+      "failures": 6,
+      "failures_after_success": 0,
+      "target_user": "test",
+      "start": "2026-11-07T18:39:07",
+      "end": "2026-11-07T18:39:19",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "5.81.167.59",
+      "kind": "full",
+      "failures": 10,
+      "failures_after_success": 0,
+      "target_user": "oracle",
+      "start": "2026-11-07T19:12:30",
+      "end": "2026-11-07T19:12:55",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "45.184.96.167",
+      "kind": "full",
+      "failures": 5,
+      "failures_after_success": 0,
+      "target_user": "root",
+      "start": "2026-11-07T20:11:58",
+      "end": "2026-11-07T20:12:05",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "45.9.33.121",
+      "kind": "interrupted",
+      "failures": 3,
+      "failures_after_success": 2,
+      "target_user": "postgres",
+      "start": "2026-11-07T20:18:26",
+      "end": "2026-11-07T20:18:32",
+      "blacklisted": false,
+      "file": "server_03.log"
+    },
+    {
+      "ip": "222.225.23.49",
+      "kind": "full",
+      "failures": 11,
+      "failures_after_success": 0,
+      "target_user": "admin",
+      "start": "2026-11-07T21:38:33",
+      "end": "2026-11-07T21:38:54",
+      "blacklisted": false,
+      "file": "server_03.log"
+    }
+  ],
+  "critical_bursts": [
+    {
+      "file": "server_01.log",
+      "start": "2026-11-05T12:33:46",
+      "end": "2026-11-05T12:35:02",
+      "count": 15
+    },
+    {
+      "file": "server_02.log",
+      "start": "2026-11-06T09:26:36",
+      "end": "2026-11-06T09:28:03",
+      "count": 15
+    },
+    {
+      "file": "server_03.log",
+      "start": "2026-11-07T13:45:10",
+      "end": "2026-11-07T13:46:35",
+      "count": 15
+    }
+  ],
+  "escalations": [
+    {
+      "file": "server_01.log",
+      "user": "user_021",
+      "ip": "192.168.1.12",
+      "denied_at": "2026-11-05T16:22:27",
+      "changed_at": "2026-11-05T16:22:41"
+    },
+    {
+      "file": "server_01.log",
+      "user": "user_044",
+      "ip": "31.107.155.153",
+      "denied_at": "2026-11-05T17:04:27",
+      "changed_at": "2026-11-05T17:05:03"
+    },
+    {
+      "file": "server_02.log",
+      "user": "user_018",
+      "ip": "192.168.1.149",
+      "denied_at": "2026-11-06T10:15:16",
+      "changed_at": "2026-11-06T10:15:36"
+    },
+    {
+      "file": "server_02.log",
+      "user": "user_013",
+      "ip": "10.0.6.84",
+      "denied_at": "2026-11-06T19:27:30",
+      "changed_at": "2026-11-06T19:27:59"
+    },
+    {
+      "file": "server_03.log",
+      "user": "user_045",
+      "ip": "172.16.7.159",
+      "denied_at": "2026-11-07T13:38:31",
+      "changed_at": "2026-11-07T13:38:55"
+    },
+    {
+      "file": "server_03.log",
+      "user": "user_050",
+      "ip": "10.0.14.141",
+      "denied_at": "2026-11-07T15:37:17",
+      "changed_at": "2026-11-07T15:38:00"
+    }
+  ],
+  "blacklist": {
+    "attackers": [
+      "5.127.228.225",
+      "222.240.158.193",
+      "91.189.93.62",
+      "91.197.205.57",
+      "45.142.59.13",
+      "222.75.52.97"
+    ],
+    "active_normal": [
+      "31.89.164.75",
+      "151.43.44.53",
+      "89.130.72.208",
+      "151.221.29.33"
+    ],
+    "dormant": [
+      "116.98.61.177",
+      "41.100.71.93",
+      "196.25.153.254",
+      "41.4.93.141",
+      "58.244.77.217"
+    ]
+  }
+}
