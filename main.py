@@ -223,14 +223,19 @@ def cmd_benchmark(args: argparse.Namespace) -> int:
         "blacklist": blacklist,
         "threshold": args.threshold,
         "window_seconds": args.window,
+        "trace": not args.no_trace,
     }
+    if args.no_trace:
+        print("Mode --no-trace : débit seul (tracemalloc désactivé)")
+    else:
+        print("Mesure sous tracemalloc (débit ~10x plus faible qu'en production)")
     if args.sizes:
         results = run_scaling_benchmark(sources, args.sizes, **options)
     else:
         results = [run_benchmark(sources, **options)]
     print(format_benchmark(results))
     peaks = [result.peak_mib for result in results]
-    if len(peaks) > 1:
+    if len(peaks) > 1 and not args.no_trace:
         growth = peaks[-1] / peaks[0] if peaks[0] else float("inf")
         lines_growth = results[-1].lines_read / max(results[0].lines_read, 1)
         print(
@@ -324,6 +329,9 @@ def build_parser() -> argparse.ArgumentParser:
     bench.add_argument(
         "--sizes", type=int, nargs="*", default=None,
         help="traiter les N premières lignes pour chaque N (courbe mémoire)",
+    )
+    bench.add_argument(
+        "--no-trace", action="store_true", help="mesurer le débit sans tracemalloc"
     )
     bench.set_defaults(handler=cmd_benchmark)
     return parser

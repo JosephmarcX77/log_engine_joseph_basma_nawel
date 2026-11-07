@@ -119,3 +119,5 @@ def test_benchmark_measures_memory(tmp_path: Path) -> None:
     assert [r.lines_read for r in scaled] == [12, 120]
     assert "pic mémoire" in format_benchmark(scaled)
     assert result.to_dict()["peak_mib"] >= 0
+    untraced = run_benchmark([path], trace=False)
+    assert untraced.peak_bytes == 0 and untraced.lines_read == result.lines_read

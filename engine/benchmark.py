@@ -57,16 +57,20 @@ def run_benchmark(
     blacklist: frozenset[str] = frozenset(),
     threshold: int = DEFAULT_THRESHOLD,
     window_seconds: int = DEFAULT_WINDOW_SECONDS,
+    trace: bool = True,
 ) -> BenchmarkResult:
     """Exécute pipeline + agrégation sous ``tracemalloc`` et mesure le pic.
 
     Le pic est mesuré relativement à la mémoire déjà allouée avant le
-    traitement : il ne reflète que ce que le pipeline consomme.
+    traitement : il ne reflète que ce que le pipeline consomme. Avec
+    ``trace=False``, seul le débit est mesuré (``tracemalloc`` ralentit
+    l'exécution d'environ un ordre de grandeur) et le pic vaut 0.
     """
     was_tracing = tracemalloc.is_tracing()
-    if not was_tracing:
+    if trace and not was_tracing:
         tracemalloc.start()
-    tracemalloc.reset_peak()
+    if trace:
+        tracemalloc.reset_peak()
     baseline, _ = tracemalloc.get_traced_memory()
     started = time.perf_counter()
     stats = PipelineStats()
@@ -76,7 +80,7 @@ def run_benchmark(
     aggregator.consume(build_pipeline(sources, stats=stats, limit=limit))
     elapsed = time.perf_counter() - started
     current, peak = tracemalloc.get_traced_memory()
-    if not was_tracing:
+    if trace and not was_tracing:
         tracemalloc.stop()
     return BenchmarkResult(
         lines_read=stats.lines_read,
