@@ -222,6 +222,7 @@ class StreamAggregator:
         # --- defaultdict(int) : compteurs simples
         self.level_counts: defaultdict[str, int] = defaultdict(int)
         self.user_counts: defaultdict[str, int] = defaultdict(int)
+        self.ip_counts: defaultdict[str, int] = defaultdict(int)
         self.route_counts: defaultdict[str, int] = defaultdict(int)
         self.format_counts: defaultdict[str, int] = defaultdict(int)
         self.event_counts: defaultdict[str, int] = defaultdict(int)
@@ -257,6 +258,7 @@ class StreamAggregator:
         self.total_records += 1
         self.level_counts[level] += 1
         self.user_counts[user] += 1
+        self.ip_counts[ip] += 1
         self.user_level_counts[user][level] += 1
         self.route_counts[record.get("route", "unrouted")] += 1
         self.format_counts[record["source_format"]] += 1
@@ -383,6 +385,7 @@ class StreamAggregator:
             "user_level_counts": self.user_level_counts,
             "escalations": self.escalations,
             "level_counts": self.level_counts,
+            "ip_counts": self.ip_counts,
             "first_seen": self.first_seen,
             "last_seen": self.last_seen,
         }
