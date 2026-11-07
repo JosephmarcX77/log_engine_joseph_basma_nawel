@@ -1,4 +1,5 @@
-"""Tests du MODULE 1 — ingestion paresseuse (``yield`` / ``yield from``)."""
+"""Tests du MODULE 1 — ingestion paresseuse (``yield`` / ``yield from``)
+et générateur de jeux de données (``scripts/generate_logs.py``)."""
 
 from __future__ import annotations
 
@@ -6,13 +7,15 @@ import inspect
 import logging
 import re
 from collections.abc import Generator
+from datetime import datetime
 from itertools import islice
 from pathlib import Path
 
 import pytest
 
-from conftest import write_lines
+from conftest import GeneratedDataset, write_lines
 from engine import ingestion
+from engine.analytics import load_blacklist
 from engine.config import PROJECT_ROOT
 from engine.exceptions import LogSourceError
 from engine.ingestion import (
@@ -21,6 +24,7 @@ from engine.ingestion import (
     read_multiple_sources,
     resolve_sources,
 )
+from scripts.generate_logs import GeneratorConfig, generate_dataset
 
 
 def test_read_log_file_is_a_generator(mixed_log_file: Path) -> None:
@@ -142,3 +146,45 @@ def test_engine_never_loads_whole_files() -> None:
     ]
     assert offenders == []
     assert "yield from" in inspect.getsource(ingestion.read_multiple_sources)
+
+
+# --------------------------------------------------------------------------
+# Générateur de jeux de données
+# --------------------------------------------------------------------------
+def test_generator_is_deterministic(tmp_path: Path) -> None:
+    """Même graine -> fichiers identiques ; graine différente -> fichiers différents."""
+
+    def build(name: str, seed: int) -> str:
+        config = GeneratorConfig(
+            output_dir=tmp_path / name,
+            files=1,
+            lines=500,
+            seed=seed,
+            blacklist_path=tmp_path / f"{name}.txt",
+        )
+        generate_dataset(config)
+        return (tmp_path / name / "server_01.log").read_text(encoding="utf-8")
+
+    assert build("a", 1) == build("b", 1)
+    assert build("a", 1) != build("c", 2)
+
+
+def test_generator_output(generated_dataset: GeneratedDataset) -> None:
+    """Horodatages croissants, totaux cohérents, blacklist de 15 IP."""
+    logs, blacklist, truth = generated_dataset
+    assert sum(entry["lines"] for entry in truth["files"]) == truth["totals"]["lines"]
+    for entry in truth["files"]:
+        previous = datetime.min
+        for line in read_log_file(logs / entry["name"]):
+            if line.count("|") < 4:  # bruit : ligne vide ou tronquée
+                continue
+            try:
+                current = datetime.fromisoformat(line.strip()[:19])
+            except ValueError:
+                continue
+            if current.year == 1970:  # bruit : horodatage nul
+                continue
+            assert current >= previous
+            previous = current
+    assert len(load_blacklist(blacklist)) == 15
+    assert truth["attack_sequences"]["interrupted"] > 0

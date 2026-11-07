@@ -11,6 +11,7 @@ from typing import Any
 
 import pytest
 
+from conftest import GeneratedDataset
 from engine.analytics import StreamAggregator, group_events_by_ip, load_blacklist
 from engine.config import DEFAULT_BLACKLIST
 from engine.detection import DetectionTrace, detect_brute_force
@@ -164,3 +165,15 @@ def test_streaming_detection_equals_global_detection(samples_dir: Path) -> None:
         events_by_ip, blacklist=load_blacklist(DEFAULT_BLACKLIST)
     )
     assert streaming == global_alerts
+
+
+def test_detection_matches_generated_ground_truth(
+    generated_dataset: GeneratedDataset,
+) -> None:
+    """La détection est conforme à la vérité terrain sur une AUTRE graine."""
+    logs, blacklist, truth = generated_dataset
+    aggregator = StreamAggregator(blacklist=load_blacklist(blacklist))
+    aggregator.consume(build_pipeline(discover_sources(logs)))
+    detected = {(a.ip, a.count) for a in aggregator.brute_force_alerts}
+    expected = {(a["ip"], a["failures"]) for a in truth["expected_alerts"]}
+    assert detected == expected

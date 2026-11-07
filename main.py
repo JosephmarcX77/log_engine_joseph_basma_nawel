@@ -27,14 +27,16 @@ from pathlib import Path
 from engine import config
 from engine.analytics import StreamAggregator, load_blacklist
 from engine.audit import audit_scope, export_audit, format_audit_table
-from engine.benchmark import format_benchmark, run_benchmark, run_scaling_benchmark
 from engine.exceptions import ConfigurationError, LogEngineError
 from engine.ingestion import resolve_sources
 from engine.models import PipelineStats, Predicate
 from engine.pipeline import build_pipeline, min_level_predicate
 from engine.report import (
     build_report,
+    format_benchmark,
     render_console,
+    run_benchmark,
+    run_scaling_benchmark,
     sign_report,
     write_json_report,
 )

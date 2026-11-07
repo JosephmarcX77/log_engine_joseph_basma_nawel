@@ -1,8 +1,11 @@
-"""Export des résultats : rapport JSON complet (signé HMAC) et synthèse console.
+"""Export des résultats : rapport JSON (signé HMAC), synthèse console, benchmark.
 
 Le rapport JSON est signé avec HMAC-SHA256 (secret lu dans la variable
 d'environnement ``LOG_ENGINE_SECRET``) : toute modification ultérieure du
 fichier est détectable avec ``verify_signature``.
+
+La dernière section produit le rapport de performance (commande
+``benchmark``) : mémoire pic mesurée par ``tracemalloc`` et débit.
 """
 
 from __future__ import annotations
@@ -10,15 +13,25 @@ from __future__ import annotations
 import hashlib
 import hmac
 import json
+import time
+import tracemalloc
 from collections.abc import Iterable, Mapping, Sequence
+from dataclasses import asdict, dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Any
 
 from engine.analytics import StreamAggregator, top_items
-from engine.config import ENGINE_VERSION, LEVELS, TOP_N
+from engine.config import (
+    DEFAULT_THRESHOLD,
+    DEFAULT_WINDOW_SECONDS,
+    ENGINE_VERSION,
+    LEVELS,
+    TOP_N,
+)
 from engine.exceptions import ReportError
 from engine.models import Alert, PipelineStats
+from engine.pipeline import build_pipeline
 from engine.rules import RulesReport
 
 SIGNATURE_ALGORITHM = "HMAC-SHA256"
@@ -274,4 +287,106 @@ def render_console(report: Mapping[str, Any], *, max_alerts: int = 60) -> str:
     for name, error in rules["errors"].items():
         lines.append(f"  !! {name} : {error}")
     lines.append(RULE)
+    return "\n".join(lines)
+
+
+# --------------------------------------------------------------------------
+# Benchmark mémoire / débit (commande ``benchmark``)
+#
+# Objectif : démontrer que la mémoire pic reste bornée quand le nombre de
+# lignes traitées augmente, grâce aux générateurs et à l'agrégation bornée.
+# ``run_scaling_benchmark`` traite successivement les N premières lignes
+# (``itertools.islice``, paresseux) pour plusieurs valeurs de N.
+# --------------------------------------------------------------------------
+@dataclass(frozen=True)
+class BenchmarkResult:
+    """Mesures d'une exécution du pipeline."""
+
+    lines_read: int
+    valid_records: int
+    seconds: float
+    peak_bytes: int
+    current_bytes: int
+    alerts: int
+
+    @property
+    def lines_per_second(self) -> float:
+        """Débit en lignes par seconde."""
+        return self.lines_read / self.seconds if self.seconds > 0 else 0.0
+
+    @property
+    def peak_mib(self) -> float:
+        """Mémoire pic (Mio) allouée pendant le traitement."""
+        return self.peak_bytes / (1024 * 1024)
+
+    def to_dict(self) -> dict[str, Any]:
+        """Représentation JSON-sérialisable."""
+        data = asdict(self)
+        data["lines_per_second"] = round(self.lines_per_second)
+        data["peak_mib"] = round(self.peak_mib, 3)
+        return data
+
+
+def run_benchmark(
+    sources: Sequence[Path],
+    *,
+    limit: int | None = None,
+    blacklist: frozenset[str] = frozenset(),
+    threshold: int = DEFAULT_THRESHOLD,
+    window_seconds: int = DEFAULT_WINDOW_SECONDS,
+    trace: bool = True,
+) -> BenchmarkResult:
+    """Exécute pipeline + agrégation sous ``tracemalloc`` et mesure le pic.
+
+    Le pic est mesuré relativement à la mémoire déjà allouée avant le
+    traitement : il ne reflète que ce que le pipeline consomme. Avec
+    ``trace=False``, seul le débit est mesuré (``tracemalloc`` ralentit
+    l'exécution d'environ un ordre de grandeur) et le pic vaut 0.
+    """
+    was_tracing = tracemalloc.is_tracing()
+    if trace and not was_tracing:
+        tracemalloc.start()
+    if trace:
+        tracemalloc.reset_peak()
+    baseline, _ = tracemalloc.get_traced_memory()
+    started = time.perf_counter()
+    stats = PipelineStats()
+    aggregator = StreamAggregator(
+        blacklist=blacklist, threshold=threshold, window_seconds=window_seconds
+    )
+    aggregator.consume(build_pipeline(sources, stats=stats, limit=limit))
+    elapsed = time.perf_counter() - started
+    current, peak = tracemalloc.get_traced_memory()
+    if trace and not was_tracing:
+        tracemalloc.stop()
+    return BenchmarkResult(
+        lines_read=stats.lines_read,
+        valid_records=stats.valid_records,
+        seconds=elapsed,
+        peak_bytes=max(peak - baseline, 0),
+        current_bytes=max(current - baseline, 0),
+        alerts=len(aggregator.brute_force_alerts),
+    )
+
+
+def run_scaling_benchmark(
+    sources: Sequence[Path], sizes: Iterable[int], **options: Any
+) -> list[BenchmarkResult]:
+    """Benchmark pour chaque taille de ``sizes`` (N premières lignes)."""
+    return [run_benchmark(sources, limit=size, **options) for size in sizes]
+
+
+def format_benchmark(results: Sequence[BenchmarkResult]) -> str:
+    """Tableau texte des résultats."""
+    header = (
+        f"{'lignes lues':>13} {'valides':>12} {'durée (s)':>10} "
+        f"{'lignes/s':>10} {'pic mémoire':>13} {'alertes':>8}"
+    )
+    lines = [header, "-" * len(header)]
+    for result in results:
+        lines.append(
+            f"{result.lines_read:>13,} {result.valid_records:>12,} "
+            f"{result.seconds:>10.2f} {result.lines_per_second:>10,.0f} "
+            f"{result.peak_mib:>9.2f} Mio {result.alerts:>8,}".replace(",", " ")
+        )
     return "\n".join(lines)

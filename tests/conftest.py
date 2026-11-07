@@ -12,6 +12,7 @@ import pytest
 
 from engine.config import DEFAULT_INPUT_DIR, GROUND_TRUTH_FILE
 from engine.models import LogRecord, SecurityEvent
+from scripts.generate_logs import GeneratorConfig, generate_dataset
 
 # Lignes valides (une par format) -------------------------------------------
 JSON_LINE = (
@@ -62,6 +63,8 @@ MIXED_LINES: tuple[str, ...] = (
     SPACED_LINE,
 )
 BASE_TIME = datetime(2026, 11, 7, 10, 0, 0)
+# (dossier des logs, fichier blacklist, vérité terrain)
+GeneratedDataset = tuple[Path, Path, dict[str, Any]]
 
 
 def write_lines(path: Path, lines: tuple[str, ...] | list[str]) -> Path:
@@ -140,3 +143,18 @@ def ground_truth(samples_dir: Path) -> dict[str, Any]:
     with (samples_dir / GROUND_TRUTH_FILE).open(encoding="utf-8") as handle:
         data: dict[str, Any] = json.load(handle)
     return data
+
+
+@pytest.fixture(scope="session")
+def generated_dataset(tmp_path_factory: pytest.TempPathFactory) -> GeneratedDataset:
+    """Jeu de données généré avec une AUTRE graine (7) que les échantillons."""
+    root = tmp_path_factory.mktemp("dataset")
+    config = GeneratorConfig(
+        output_dir=root / "logs",
+        files=2,
+        lines=4_000,
+        seed=7,
+        blacklist_path=root / "blacklist.txt",
+    )
+    truth = generate_dataset(config)
+    return root / "logs", root / "blacklist.txt", truth
